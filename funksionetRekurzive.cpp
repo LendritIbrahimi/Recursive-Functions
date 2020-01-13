@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include<cctype>
+#include <cctype>
+#include <conio.h>
 using namespace std;
 
 
@@ -70,12 +71,7 @@ string removeChar(string text, char c, int index = 0)
 }
 
 string Flip(string text, int index = 0) {
-	int size = 0;
-	if (text.length() % 2)
-		size = text.length() / 2 + 1;
-	else
-		size = text.length() / 2;
-	if (index >= size)
+	if (index >= text.length() / 2)
 		return text;
 
 	char c = text[index];
@@ -97,7 +93,7 @@ string toLower(string text, int index = 0) {
 	if (index < text.length())
 	{
 		text[index] = tolower(text[index]);
-		return toUpper(text, index + 1);
+		return toLower(text, index + 1);
 	}
 	return text;
 }
@@ -144,3 +140,208 @@ int Pmmp(int n, int m)
 	return Pmmp(m, n % m);
 }
 
+int main() {
+
+	while (true) {
+		system("CLS");
+		int fOption;
+		cout << "Funksionet e mundshme --- " << endl;
+
+		cout << "[1] Shtyp vleren maksimale te vektorit te dhene." << endl;
+		cout << "[2] Sorton vektorin e dhene." << endl;
+		cout << "[3] Kontrollon se a eshte numri i dhene i thjeshte." << endl;
+		cout << "[4] Kontrollon se a eshte teksti i dhene palidrom." << endl;
+		cout << "[5] Largon karakterin e dhene nga teksti." << endl;
+		cout << "[6] Rrotullo tekstin e dhene." << endl;
+		cout << "[7] Shendrron tekstin e dhene ne shkronja te medha." << endl;
+		cout << "[8] Shendrron tekstin e dhene ne shkronja te vogla." << endl;
+		cout << "[9] Shendrron numrin e dhene ne numer binar." << endl;
+		cout << "[10]Shendrron numrin e dhene ne numer oktal." << endl;
+		cout << "[11]Gjene pjestuesit e numrit te dhene." << endl;
+		cout << "[12]Ngrit ne fuqine edhe numrin e dhene" << endl;
+		cout << "[13]Gjene pjestuesin me te madhe te perbashket mes dy numrave natyror." << endl;
+
+		cout << "\nTe caktohet funksioni per perdorim: ";
+		cin >> fOption;
+
+
+		switch (fOption)
+		{
+		case 1:
+		{
+			const int size = 5;
+			double A[5];
+
+			cout << "Te shenohen antaret e vektorit " << endl;
+			for (int i = 0; i < size; i++)
+			{
+				cout << "A[" << (i + 1) << "] = ";
+				cin >> A[i];
+			}
+
+			cout << "Vlera maksimale ne vektor eshte " << maxValue(A, size);
+		}
+		break;
+
+		case 2:
+		{
+			const int size = 5;
+			double A[5];
+
+			cout << "Te shenohen antaret e vektorit " << endl;
+			for (int i = 0; i < size; i++)
+			{
+				cout << "A[" << (i + 1) << "] = ";
+				cin >> A[i];
+			}
+
+			double* B = Sort(A, size);
+
+			cout << "Vektori i sortuar eshte " << endl;
+
+			for (int i = 0; i < size; i++)
+			{
+				cout << "A[" << (i + 1) << "] = " << B[i] << endl;
+			}
+
+		}
+		break;
+		case 3:
+		{
+			int cPrime;
+			cout << "\nNumri per kontrollim: ";
+			cin >> cPrime;
+
+			(isPrime(cPrime) == true) ? (cout << "Eshte i thjeshte" << endl) : (cout << "Nuk eshte i thjeshte" << endl);
+		}
+		break;
+		case 4:
+		{
+			string cPalidrome;
+			cout << "\nTeksti per kontrollim: ";
+			cin.ignore();
+			getline(cin, cPalidrome);
+
+			cout << "Teksti i dhene " << cPalidrome;
+			(isPalidrome(cPalidrome) == true) ? (cout << " eshte palidrom" << endl) : (cout << " nuk eshte palidrom" << endl);
+		}
+		break;
+		case 5:
+		{
+			string charText;
+			char cRemove;
+
+			cout << "\nTeksti i dhene: ";
+			cin.ignore();
+			getline(cin, charText);
+
+			cout << "\nKarakteri i dhene: ";
+			cin >> cRemove;
+
+			cout << "Teksti rezultues: " << removeChar(charText, cRemove);
+		}
+		break;
+		case 6:
+		{
+			string sFlip;
+
+			cout << "\nTeksti i dhene: ";
+			cin.ignore();
+			getline(cin, sFlip);
+
+			cout << "Teksti rezultues: " << Flip(sFlip);
+		}
+		break;
+		case 7:
+		{
+			string sUpper;
+
+			cout << "\nTeksti i dhene: ";
+			cin.ignore();
+			getline(cin,sUpper);
+
+			cout << "Teksti rezultues: " << toUpper(sUpper);
+		}
+		break;
+		case 8:
+		{
+			string sLower;
+
+			cout << "\nTeksti i dhene: ";
+			cin.ignore();
+			getline(cin, sLower);
+
+			cout << "Teksti rezultues: " << toLower(sLower);
+		}
+		break;
+		case 9:
+		{
+			int iBinary;
+
+			cout << "\nNumri i dhene: ";
+			cin >> iBinary;
+
+			cout << "Numri rezultues: " << toBinary(iBinary);
+		}
+		break;
+		case 10:
+		{
+			int iOctal;
+
+			cout << "\nNumri i dhene: ";
+			cin >> iOctal;
+
+			cout << "Numri rezultues: " << toOctal(iOctal);
+		}
+		break;
+		case 11:
+		{
+			int iDiv;
+
+			cout << "\nNumri i dhene: ";
+			cin >> iDiv;
+
+			cout << "Pjestuesit te numrit rezultues: " << Divisors(iDiv);
+		}
+		break;
+		case 12:
+		{
+			int a, b;
+
+			cout << "\nNumri i dhene: ";
+			cin >> a;
+
+			cout << "\nFuqia e dhene: ";
+			cin >> b;
+
+			cout << "Numri " << a << " i ngritur ne fuqine " << b << " eshte: " << Pow(a, b);
+		}
+		break;
+		case 13:
+		{
+			int a, b;
+
+			cout << "\nNumri i pare i dhene: ";
+			cin >> a;
+
+			cout << "\nNumri i dyte i dhene: ";
+			cin >> b;
+
+			cout << "Pjestuesi me i madh i perbashket eshte: " << Pmmp(a, b);
+		}
+		break;
+		default:
+			break;
+		}
+
+		cout << endl << "Perseriteni? [p]o" << endl;
+		char contChar = _getch();
+		if (contChar != 'p')
+			break;
+
+
+	}
+
+	system("pause");
+	return 0;
+}
